@@ -1,0 +1,136 @@
+.presentation {
+    margin:0 auto;
+    width:960px;
+}
+
+.analyse {
+    margin:0 auto;
+    width:960px;
+}
+
+.resultat {
+    margin:0 auto;
+    width:960px;
+}
+
+.modelisation {
+    margin:0 auto;
+    width:960px;
+}
+
+.application {
+    margin:0 auto;
+    width:960px;
+}
+
+.boxplot {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.diagonal {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.diagonal_table {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.height_left {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.height_left_table {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.height_right {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.height_right_table {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.margin_low {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.margin_low_table {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.margin_up {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.margin_up_table {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.length {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.length_table {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.roc_curve {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.cluster {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.table_comparaison_model {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}

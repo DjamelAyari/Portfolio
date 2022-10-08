@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="../..//static/p3_css_detection_faux_billet/style_p3_presentation.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+<title>Détection de faux billets</title>
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul>
+      <li><a href="../../static/document/CV.pdf" target="blank">CV</a></li>
+      <li class="menu-deroulant">
+        <a>Projets</a>
+            <ul class="sous-menu">
+            <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+            <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+            <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+            <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+            <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+                boutique</p></a></li>
+            <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+            <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+            <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+            </ul>
+      </li>
+    </ul>
+</nav>
+
+<br>
+
+<h1>Détection de faux billets</h1>
+
+<div class="presentation">
+
+    <h2>Présentation du projet</h2>
+
+    <p>Ce projet consiste à créer une application permettant la détection de faux billets.</p>
+
+    <p>Cette application doit être configurée pour le faire à partir des dimensions billets en 
+        millimètre:</p>
+
+    <p>-Longueur du billet</p>
+    <p>-Hauteur du billet</p>
+    <p>-Marge haut</p>
+    <p>-Marge bas</p>
+    <p>-Diagonal</p>
+
+    <p>Pour réaliser cette application j'ai utilisé deux algorithmes permettant la classification.</p>
+
+    <p>1. Régression Logistique (algorithme d'apprentissage supervisé)</p>
+
+    <p>2. K-Means (algorithme d'apprentissage non supervisé)</p>
+
+    <p>J'ai fini par créer une petite API permettant l'utilisation de ce modèle.</p>
+
+</div>
+
+<div class="analyse">
+
+    <h2>Analyse des données</h2>
+    <p>Comment donc détecter des faux billets ?</p>
+
+    <p>Un billet possède plusieurs caractéristiques, comme par exemple:</p>
+    <p>-Couleurs</p>
+    <p>-Poids</p>
+    <p>-Dimensions</p>
+
+    <p>Les dimensions sont des caractéristiques précises, elles rendent donc les résultats fiables.</p>
+
+    <p>Pour bien comprendre la présentation qui va suivre il faut dans un premier temps être au clair avec
+        les "Box Plot".</p>
+    <p>Un Box Plot est un support visuel permettant de résumer une variable intuitivement. 
+        La plage de l'échelle horizontale s'étend du minimum au maximum pour la variable sélectionnée.</p>
+    <p>La valeur centrale, la médiane, séparent les données en quantités égales (il existe autant de 
+        valeur supérieures qu'inférieures à cette valeur dans l'échantillon).</p>
+    <p>Les bords du rectangle sont les quartiles .
+        Par exemple pour le bord inférieur, 25% des observations ont des valeurs plus petites et 75% ont 
+        des valeurs plus grandes.</p>
+
+    <img class="boxplot" src="../../static/images/p3_boxplot.png" alt="Box Plot" width="800" height="500">
+
+    <p>1st Quartile = 25%</p>
+    <p>Median = 50%</p>
+    <p>3rd Quartile = 75%</p>
+
+    <h3>Diagonal</h3>
+    <img class="diagonal" src="../../static/images/p3_diagonal.png" alt="Diagonal" width="800" height="500">
+    <img class="diagonal_table" src="../../static/images/p3_diagonal_table.png" alt="Diagonal table" width="800" height="250">
+    <p>La distribution de la mesure DIAGONAL est assez homogène entre les FAUX et les VRAI.</p>
+
+    <h3>Height Left</h3>
+    <img class="height_left" src="../../static/images/p3_height_left.PNG" alt="Height Left" width="800" height="500">
+    <img class="height_left_table" src="../../static/images/p3_height_left_table.PNG" alt="Height left table" width="800" height="250">
+    <p>La distribution de la mesure HEIGHT LEFT chez les FAUX est très proche des VRAI. </p>
+    <p>La distribution des FAUX est plus tassé que chez les VRAI.</p>
+    <p>Les FAUX peuvent se cacher chez les VRAI.</p>
+
+    <h3>Height Right</h3>
+    <img class="height_right" src="../../static/images/p3_height_right.PNG" alt="Height Right width="800" height="500">
+    <img class="height_right_table" src="../../static/images/p3_height_right_table.PNG" alt="Height right table" width="800" height="250">
+    <p>La distribution de la mesure HEIGHT RIGHT chez les FAUX est très proche des VRAI.</p>
+    <p>La distribution des FAUX est plus tassé que chez les VRAI.</p>
+    <p>Les FAUX peuvent se cacher chez les VRAI.</p>
+
+    <h3>Margin Low</h3>
+    <img class="margin_low" src="../../static/images/p3_margin_low.PNG" alt="Margin Low" width="800" height="500">
+    <img class="margin_low_table"  src="../../static/images/p3_margin_low_table.PNG" alt="Margin low table" width="800" height="250">
+    <p>La dimension de la mesure MARGIN LOW chez les VRAI est beaucoup tassée que chez les FAUX.</p>
+
+    <h3>Margin Up</h3>
+    <img class="margin_up" src="../../static/images/p3_margin_up.PNG" alt="Margin Up" width="800" height="500">
+    <img class="margin_up_table" src="../../static/images/p3_margin_up_table.PNG" alt="Margin up table" width="800" height="250">
+    <p>La distribution de la mesure MARGIN UP chez les FAUX est légèrement moins volatile que chez les 
+        VRAI.</p>
+
+    <h3>Length</h3>
+    <img class="length" src="../../static/images/p3_length.PNG" alt="Length" width="800" height="500">
+    <img class="length_table" src="../../static/images/p3_length_table.PNG" alt="Length table" width="800" height="250">
+    <p>La distribution de la mesure LENGTH est plus étalée chez les FAUX que chez les VRAI dimensions.</p>
+
+    <h3>Conclusion</h3>
+    <p>L’analyse précédente montre que les dimensions LENGTH et MARGIN LOW sont celles qui trahissent le 
+        plus les FAUX billets.</p>
+    <p>Étant dans l’ordre du millimètre, seule une machine peut repérer ces différences infimes.</p>
+    <p>D’où la nécessité d’un modèle informatique.</p>
+
+</div>
+
+<div class="resultat">
+
+    <h2>Explication des resultats obtenue pour les deux modèles</h2>
+    <p>Après avoir travaillé les données, j’ai créé deux modèles permettant d’identifier les faux billets.</p>
+
+    <p>-régression logistique 99,99% de précision.</p>
+        
+    <p>-clustering 99,98% de bonne classification.</p>
+
+    <h3>Algorithme de Régression Logistique et Performance du Modèle</h3>
+    <img class="roc_curve" src="../../static/images/p3_roc_curve.PNG" alt="ROC Curve" width="400" height="400">
+    <p>La ligne rouge « random guess » représente un modèle qui ferait des prédictions basées sur le hasard 
+        50/50.</p>
+    <p>La ligne bleue représente le ratio de prédictions justes par rapport au ratio de prédictions 
+        fausses.</p>
+    <p>Entre le ratio de prédictions juste et fausses la ligne bleue donne un résultat d’aire sous la 
+        courbe de 0,99 sur 1.</p>
+    <p>Il y a une grande majorité de predictions justes.</p>
+
+    <h3>Algorithme du K_Means et Performance du Modèle</h3>
+    <img class="cluster" src="../../static/images/p3_cluster.png" alt="Cluster" width="400" height="400">
+    <p>Le cluster bleu est bien compact et se différencie bien du rouge.</p>
+    <p>A part quelques points extrêmes la performance du modèle à bien classifier les VRAI et les FAUX 
+        est très bonne.</p>
+    <p>Le silhouette score va de -1 à 1.</p>
+    <p>Plus les clusters sont éloignés plus le score est proche de 1.</p>
+    <p>Le silhouette score indique 0,52.</p>
+
+    <h3>Comparaison des modèles</h3>
+    <img class="table_comparaison_model" src="../../static/images/p3_table_comparaison_model.PNG" alt="Tableau de comparaion des modèles" 
+    width="800" height="300">
+    <p>La Régression Logistique et le K-Means permettent tous les deux au modèle un apprentissage de bonne 
+        qualité.</p>
+    <p>Cependant la Régression Logistique donne de meilleurs résultats.</p>
+
+</div>
+
+<div class="modelisation">
+
+    <h2>Analyse des données et modélisation</h2>
+    <a href="/p3_notebook_detection_faux_billet" target="blank"><p>Notebook de l'analyse des 
+        données et de la modélisation.</p></a>
+
+</div>
+
+<div class="application">
+
+    <h2>Application</h2>
+
+    <p>Suite à cette analyse et modélisation le choix de l'algorithme fait est celui de la régression
+        logistique.</p>
+
+    <p>J'ai créé une API qui permet via une page internet d'uploader un fichier CSV contenant une liste
+        de billets à classifier.</p>
+    <p>Et qui en output retourne un fichier CSV contenant:</p>
+
+    <p>-Les dimensions des billets</p>
+    <p>-La classe retournée par l'algorithme</p>
+    <p>-La probabilité de cette classe</p>
+
+    <a href="/api_detection_faux_billet" target="blank"><p>Application de détection de faux billets.</p></a>
+
+    <a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<link rel="stylesheet" href="../../static/p1_css_base_de_donnees_sql_immo/style_p1_code_table_donnees.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+<title>Code de création des tables et insertion des données</title>
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul>
+        <li><a href="../static/document/CV.pdf" target="blank">CV</a></li>
+        <li class="menu-deroulant">
+        <a>Projets</a>
+            <ul class="sous-menu">
+            <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+            <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+            <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+            <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+            <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+                boutique</p></a></li>
+            <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+            <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+            <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+            </ul>
+      </li>
+    </ul>
+</nav>
+
+<br>
+
+<h1>Code de création des tables et insertion des données</h1>
+
+<div class="container">
+    <h2>Création de la base de données</h2>
+    <pre>
+        <code>
+            CREATE DATABASE immobilier;
+        </code>
+    </pre>
+
+    <h2>Rentrer dans la base de données</h2>
+    <pre>
+        <code>
+            USE immobilier;
+        </code>
+    </pre>
+
+    <h2>Création des tables</h2>
+    <h3>Table "localite"</h3>
+    <pre>
+        <code>
+            CREATE TABLE localite (
+            id_localite INT NOT NULL AUTO_INCREMENT,
+            n_voie INT NOT NULL,
+            indice_repetition VARCHAR(5),
+            type_de_voie VARCHAR(15) NOT NULL,
+            voie VARCHAR(50) NOT NULL,
+            code_postale INT NOT NULL,
+            commune VARCHAR(50) NOT NULL,
+            departements INT NOT NULL,
+            PRIMARY KEY (id_localite, n_voie, type_de_voie, voie, code_postale, commune, departements),
+            CONSTRAINT unique_localite UNIQUE (n_voie, indice_repetition, type_de_voie, voie, code_postale, commune, departements)
+            ) ENGINE=INNODB;
+        </code>
+    </pre>
+
+    <h3>Table "biens"</h3>
+    <pre>
+        <code>
+            CREATE TABLE biens (
+            id_biens INT NOT NULL AUTO_INCREMENT,
+            type_local VARCHAR(20) NOT NULL,
+            surface_reelle_bati DECIMAL(10,2) NOT NULL,
+            nombre_pieces_principales INT NOT NULL,
+            surface_carrez DECIMAL(15,2) NOT NULL,
+            nature_culture VARCHAR(5),
+            surface_terrain DECIMAL(15,2) NOT NULL,
+            id_localite INT,
+            PRIMARY KEY (id_biens, type_local, surface_reelle_bati, nombre_pieces_principales, surface_carrez, surface_terrain, id_localite),
+            CONSTRAINT unique_biens UNIQUE (type_local, surface_reelle_bati, nombre_pieces_principales, surface_carrez, surface_terrain, id_localite),
+            FOREIGN KEY (id_localite)
+                REFERENCES localite(id_localite)
+            ) ENGINE=INNODB;
+        </code>
+    </pre>
+
+    <h3>Table "mutation"</h3>
+    <pre>
+        <code>
+            CREATE TABLE mutation (
+            id_mutation INT NOT NULL AUTO_INCREMENT,
+            date_mutation DATE NOT NULL,
+            nature_mutation VARCHAR(50) NOT NULL,
+            valeur_fonciere DECIMAL(15,2) NOT NULL,
+            id_biens INT,
+            PRIMARY KEY (id_mutation, date_mutation, nature_mutation, valeur_fonciere, id_biens),
+            CONSTRAINT unique_mutation UNIQUE (date_mutation, nature_mutation, valeur_fonciere, id_biens),
+            FOREIGN KEY (id_biens)
+                REFERENCES biens(id_biens)
+            ) ENGINE=INNODB;
+        </code>
+    </pre>
+
+    <h2>Insertion des données</h2>
+    <h3>Table "localite"</h3>
+    <pre>
+        <code>
+            SOURCE C:/Users/DjamelAyari/OneDrive/DATA SCIENCE/OCR/Data Analyst/Projet 3/SQL/localite.sql;
+        </code>
+    </pre>
+
+    <h3>Table "biens"</h3>
+    <pre>
+        <code>
+            SOURCE C:/Users/DjamelAyari/OneDrive/DATA SCIENCE/OCR/Data Analyst/Projet 3/SQL/biens.sql;
+        </code>
+    </pre>
+
+    <h3>Table "mutation"</h3>
+    <pre>
+        <code>
+            SOURCE C:/Users/DjamelAyari/OneDrive/DATA SCIENCE/OCR/Data Analyst/Projet 3/SQL/mutation.sql;
+        </code>
+    </pre>
+
+    <a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+
+
+
+{% endblock %}

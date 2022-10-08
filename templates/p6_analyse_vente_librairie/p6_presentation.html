@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="../../static/p6_css_analyse_vente_librairie/style_p6_presentation.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+<title>Analyse des ventes d'une librairie</title>
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul>
+      <li><a href="../../static/document/CV.pdf" target="blank">CV</a></li>
+      <li class="menu-deroulant">
+        <a>Projets</a>
+            <ul class="sous-menu">
+            <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+            <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+            <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+            <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+            <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+                boutique</p></a></li>
+            <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+            <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+            <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+            </ul>
+      </li>
+    </ul>
+</nav>
+
+<br>
+
+<h1>Analyse des ventes d'une librairie</h1>
+
+<div class="presentation">
+
+    <h2>Présentation du projet</h2>
+
+    <p>En tant que consultant pour une grande librairie en ligne, j'interviens car l'entreprise souhaite
+        faire le point après deux ans d’exercice, et pouvoir analyser ses points forts, ses points 
+        faibles, les comportements clients, etc.</p>
+
+    <p>Cette analyse va être découpée en deux parties:</p> 
+    <p>1. Une analyse des différents indicateurs de vente:</p>
+    <p>-Les différents indicateurs et graphiques autour du chiffre d'affaires.</p>
+    <p>-Regarder l’évolution dans le temps et mettre en place une décomposition en moyenne mobile pour 
+        évaluer la tendance globale.
+    <p>-Faire un zoom sur les références, pour voir un peu les tops et les flops, la répartition par 
+        catégorie, etc.
+    <p>-Quelques informations sur les profils de nos clients, et également la répartition du chiffre 
+        d'affaires entre eux, via par exemple une courbe de Lorenz.
+    <p>Toutes les informations et tous graphiques qui apporteraient de l’information pertinente sont les 
+        bienvenus.</p>
+
+    <p>2. Une analyse plus ciblée sur les clients:</p>
+
+    <p>L’objectif serait cette fois-ci de comprendre le comportement des clients en ligne, pour pouvoir 
+        ensuite comparer avec la connaissance acquise via leurs librairies physiques.</p>
+    <p>Pour cela regarder certaines corrélations, pour voir s’il n’y a pas certains points que nous 
+        pourrions analyser.</p>
+    <p>En particulier le lien entre le genre d’un client et les catégories des livres achetés.</p> 
+    <p>Ensuite le lien entre l’âge des clients et le montant total des achats, la fréquence d’achat, 
+        la taille du panier moyen et les catégories des livres achetés.</p>
+
+</div>
+
+<div class="analyse">
+
+    <h2>Analyse des données et résultats</h2>
+    <h3>Les différents indicateurs et graphiques autour du chiffre d'affaires.</h3>
+    <p>Le CA total est de 11 856 820.47 €.</p>
+    <p>La catégorie qui a la plus grande part du CA est la 1 ensuite la 0 et enfin la 2.</p>
+    <img class="ca021" src="../../static/images/p6_ca_0_2_1.png" alt="CA 0 2 1" width="600" height="400">
+    <p>Les hommes représente une plus grande part du CA que les femmes mais la différence est petite.</p>
+    <img class="hf" src="../../static/images/p6_h_f.png" alt="H/F" width="600" height="400">
+    <p>Les 41-50 et les 31-40 représente la plus grande part du CA, suivit des 17-25.</p>
+    <img class="caage" src="../../static/images/p6_ca_age.png" alt="CA age" width="600" height="400">
+
+    <h3>Regarder l’évolution dans le temps et mettre en place une décomposition en moyenne mobile pour 
+        évaluer la tendance globale.</h3>
+    <p>J'ai 3 années calendaires mais 24 mois, car l'année 2021 ne comporte pas les mois de janvier et 
+        février et l'année 2023 comporte seulement les mois de janvier et février.
+        L'année 2022 est la meilleure année en terme de CA et elle à une année complète de ventre.  
+        L'année 2023 est la moins bonne en terme de CA et elle a seulement 2 mois de ventes.</p>
+    <img class="caannees" src="../../static/images/p6_ca_annees.png" alt="CA années" width="600" height="400">
+
+    <p>Quand on regarde plus en détails les différentes CA fait sur les différentes mois, l'on constate 
+        que les CA oscillent constamment entre 450 000 et 550 000.
+        Mais il y a eu une grosse baisse de CA en octobre 2021 (pas de transactions entre le 2 et le 27 
+        octobre 2021) et le mois suivants une grosse augmentation cela est du à la catégorie 1. 
+        Après la grosse remontée il y a un légère baisse et ensuite l'évolution devient très discrète 
+        pour finir par rechuter.  
+        Il y a en fin d'année 2021 (fêtes de fin d'années ?) et le début de l'année 2022 
+        (soldes d'hiver ?) une tendence à la hausse.</p>
+
+    <p>Le CA va ensuite baisser et "ocillier" entre 517 000 et 493 000, jusqu'à baisser à 456 000 pour le 
+        mois de février 2023.
+        En regardant avec des graphiques et en utilisant en plus des moyennes mobiles, l'on constate que 
+        le CA évolue avec peu de variation, Il y a quand même la grande variation qui à lieu sur la 
+        période septembre/octobre/novembre 2021.</p>
+
+    <img class="camois" src="../../static/images/p6_ca_mois.png" alt="CA mois" width="600" height="400">
+    <img class="cacateg" src="../../static/images/p6_ca_categ.png" alt="CA catég" width="600" height="400">
+
+    <h3>Faire un zoom sur les références, pour voir un peu les tops et les flops, la répartition par 
+        catégorie, etc.</h3>
+    <p>Les 10 réf les plus vendues (quantité) sont des 1.</p>
+    <img class="refplus" src="../../static/images/p6_ref_plus.PNG" alt="Ref plus" width="100" height="300">
+
+    <p>Les 10 réf les moins vendues (quantité) sont des 0.</p>
+    <img class="refmoins" src="../../static/images/p6_ref_moins.PNG" alt="Ref moins" width="100" height="300">
+
+    <p>Les références qui générés le plus de CA sont d'abord des 1 ensuite des 0 et des 2.</p>
+    <img class="refplusca" src="../../static/images/p6_ref_plus_ca.png" alt="Ref plus CA" width="600" height="400">
+
+    <p>Les références les plus présentes en nombres sont des 0 ensuite des 1 et des 2.</p>
+    <img class="refplusnombre" src="../../static/images/p6_ref_plus_nombre.png" alt="Ref plus nombre" width="600" height="400">
+
+    <h3>Quelques informations sur les profils de nos clients, et également la répartition du chiffre 
+        d'affaires entre eux, via par exemple une courbe de Lorenz.</h3>
+    <h4>Repartition du CA par sex</h4>
+    <p>Il y a presque autant de femmes que d'hommes (il y a 2541 d'hommes de plus que de femmes).</p>
+    <img class="casex" src="../../static/images/p6_ca_sex.png" alt="CA sex" width="600" height="400">
+
+    <h4>Repartition du CA par tranches d'âges.</h4>
+    <p>Les 3 tranches d'âges les plus présentes sont les 41-50, les 31-40 et les 51-60.</p>
+    <img class="catrancheage" src="../../static/images/p6_ca_tranche_age.png" alt="CA tranche age" width="600" height="400">
+
+    <h4>Repartition du CA par sex et tranches d'âges.</h4>
+    <p>Les hommes sont majoritaires dans les tranches d'âges 41-50 et 17-25.</p>
+    <img class="casextranche" src="../../static/images/p6_ca_sex_tranche_age.png" alt="CA sex tranche age" width="600" height="400">
+
+    <h4>Repartition du CA par tranches d'âges et catégories.</h4>
+    <p>La catégories 0 est présente pour les 41-50 et 31-40.</p>
+    <p>La catégories 1 est majoritaire pour les autres tranches d'âges mais de manière bien moins 
+    significative.</p>
+    <img class="catrancheagecateg" src="../../static/images/p6_ca_tranche_age_categ.png" alt="CA tranche age categ" width="600" height="400">
+
+    <h4>Repartition du CA par sex et categ</h4>
+    <p>Il y a une légère différence, les hommes représentent plus.</p>
+    <img class="casexcateg" src="../../static/images/p6_ca_sex_categ.png" alt="CA sex categ" width="600" height="400">
+
+    <h4>La répartition du CA entre les clients (courbe de Lorenz)</h4>
+    <p>La courbe de Lorenz est une représentation graphique de la distribution d'une variable. Ici nous 
+        voulons voir comment ce présente la répartition du CA entre les clients. Il faut pour construire 
+        une courbe de Lorenz que l'axis x représente la population de 0 à 100% (0 à 1) et que l'axis y 
+        représente le pourcentage cumulée du CA.</p>
+    <img class="courbelorenz" src="../../static/images/p6_courbe_lorenz.png" alt="Courbe de Lorenz" width="600" height="400">
+    <p>L'indice de Gini calculé ci-dessous permet de connaite l'air de la surface entre la droite et la 
+        courbe de Lorenz.
+    <p>Cet indice va de 0 à 1.</p>
+    <p>0 représente une répartition parfaitement égalitaire.</p>   
+    <p>1 représente une répartition parfaitement inégalitaire.</p>
+    <p>Le coefficient de Gini est de 0.44, on est donc sur une répartition relativement
+        proportionnée.</p>
+
+</div>
+
+<div class="analyse_plus">
+
+    <h2>Une analyse plus ciblée sur les clients</h2>
+
+    <h3>Le liens entre le genre d'un clients et les catégories des livres achetés.</h3>
+    <p>Un test statistique du chi2 est fait pour déterminé le lien (voire notebook).</p>
+    <p>Il y a un liens entre le genre d'un clients et les catégories des livres achetés.</p>
+
+    <h3>Le liens entre l'âge des clients et le montant total des achats.</h3>
+    <p>Un test statistique de Spearman's est fait pour déterminé le lien (voir netebook).</p>
+    <p>Il n'y a pas réellement de correlation entre l'âge des clients et le montant total des achats.</p>
+
+    <h3>Le liens entre l'âge des clients et la fréquence d'achat.</h3>
+    <p>Un test statistique de Spearman's est fait pour déterminé le lien (voir netebook).</p>
+    <p>Il n'y a pas de correlation entre l'âge des clients et la fréquence d'achat.</p>
+
+    <h3>Le liens entre l'âge des clients et la taille du panier moyen.</h3>
+    <p>Un test statistique de Spearman's est fait pour déterminé le lien (voir netebook).</p>
+    <p>Il n'y a pas de correlation entre l'âge des clients et la taille du panier moyen.</p>
+
+    <h3>Le liens entre l'âge des clients et les catégories des livres achetés.</h3>
+    <p>Un test statistique d'ANOVA est fait pour déterminé le lien (voir netebook).</p>
+    <p>Il y a un liens entre le l'âge des clients et les catégories des livres achetés.</p>
+
+
+    <a href="/p6_notebook_analyse_vente_librairie_eda" target="blank"><p>Notebook de l'analyse exploratoire
+        des données.</p></a>
+
+    <a href="/p6_notebook_analyse_vente_librairie_rassemblement_date" target="blank"><p>Notebook des 
+        modifications.</p></a>
+
+    <a href="/p6_notebook_analyse_vente_librairie_antoine" target="blank"><p>Notebook de l'analyse 1.</p></a>
+
+    <a href="/p6_notebook_analyse_vente_librairie_julie" target="blank"><p>Notebook de l'analyse 2.</p></a>
+
+    <a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+
+{% endblock %}

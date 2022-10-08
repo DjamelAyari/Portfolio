@@ -1,0 +1,322 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<link rel="stylesheet" href="../../static/p1_css_base_de_donnees_sql_immo/style_p1_queries.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+
+<title>Requêtes</title>
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+  <ul>
+    <li><a href="../../static/document/CV.pdf" target="blank">CV</a></li>
+    <li class="menu-deroulant">
+      <a>Projets</a>
+          <ul class="sous-menu">
+          <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+          <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+          <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+          <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+          <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+              boutique</p></a></li>
+          <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+          <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+          <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+        </ul>
+    </li>
+  </ul>
+</nav>
+
+<br>
+
+<h1>Requêtes</h1>
+
+<div class="requetes">
+
+  <h2>Voici les différentes requêtes codée.</h2>
+
+  <h3>1. Nombre total d’appartements vendus au 1er semestre 2020.</h3>
+  <pre>
+      <code>
+          SELECT 
+    immobilier.biens.type_local, 
+    COUNT(*) AS nbr_appartements 
+  FROM 
+    immobilier.biens 
+    JOIN immobilier.mutation ON immobilier.biens.id_biens = immobilier.mutation.id_mutation 
+  WHERE 
+    type_local = "Appartement";
+      </code>
+  </pre>
+
+  <h3>2. Proportion des ventes d’appartements par le nombre de pièces.</h3>
+  <pre>
+      <code>
+          SELECT 
+    nombre_pieces_principales, 
+    COUNT, 
+    ROUND(COUNT / total * 100, 3) percent 
+  FROM 
+    (
+      SELECT 
+        nombre_pieces_principales, 
+        count(nombre_pieces_principales) count 
+      FROM 
+        immobilier.biens 
+      WHERE 
+        type_local = "appartement" 
+      GROUP BY 
+        nombre_pieces_principales 
+      ORDER BY 
+        nombre_pieces_principales
+    ) c 
+    JOIN (
+      SELECT 
+        count(*) total 
+      FROM 
+        immobilier.biens
+    ) t
+      </code>
+  </pre>
+
+  <h3>3. Liste des 10 départements où le prix du mètre carré est le plus élevé.</h3>
+  <pre>
+      <code>
+          with myrowset AS (
+    SELECT 
+      immobilier.localite.departements, 
+      AVG(
+        immobilier.mutation.valeur_fonciere
+      )/ AVG(
+        immobilier.biens.surface_carrez
+      ) AS Prix_metre_carre 
+    FROM 
+      immobilier.mutation 
+      JOIN immobilier.biens ON immobilier.mutation.id_mutation = immobilier.biens.id_biens 
+      JOIN immobilier.localite ON immobilier.biens.id_biens = immobilier.localite.id_localite 
+    GROUP BY 
+      departements 
+    ORDER BY 
+      - Prix_metre_carre
+  ) 
+  SELECT 
+    * 
+  FROM 
+    myrowset 
+  LIMIT 
+    10;
+      </code>
+  </pre>
+
+  <h3>4. Prix moyen du mètre carré d’une maison en Île-de-France.</h3>
+  <pre>
+      <code>
+          SELECT 
+    AVG(Prix_metre_carre) 
+  FROM 
+    (
+      SELECT 
+        immobilier.biens.type_local, 
+        immobilier.mutation.valeur_fonciere, 
+        immobilier.localite.departements, 
+        immobilier.mutation.valeur_fonciere / biens.surface_carrez AS Prix_metre_Carre 
+      FROM 
+        immobilier.biens 
+        JOIN immobilier.mutation ON immobilier.biens.id_biens = immobilier.mutation.id_mutation 
+        JOIN immobilier.localite ON immobilier.biens.id_biens = immobilier.localite.id_localite 
+      WHERE 
+        type_local in ("Maison") 
+        AND departements in (77, 78, 91, 92, 93, 94, 95)
+    ) AS inner_query;
+      </code>
+  </pre>
+
+  <h3>5. Liste des 10 appartements les plus chers avec le département et le nombre de mètres carrés.</h3>
+  <pre>
+      <code>
+          SELECT 
+    immobilier.biens.type_local, 
+    immobilier.mutation.valeur_fonciere, 
+    immobilier.localite.departements, 
+    immobilier.biens.surface_carrez 
+  FROM 
+    immobilier.biens 
+    JOIN immobilier.mutation ON immobilier.biens.id_biens = immobilier.mutation.id_mutation 
+    JOIN immobilier.localite ON immobilier.biens.id_biens = immobilier.localite.id_localite 
+  WHERE 
+    type_local = "Appartement" 
+  ORDER BY 
+    - valeur_fonciere 
+  LIMIT 
+    10;
+      </code>
+  </pre>
+
+  <h3>6. Taux d’évolution du nombre de ventes entre le premier et le second trimestre de 2020.</h3>
+  <pre>
+      <code>
+          SELECT 
+    DISTINCT(
+      SELECT 
+        count(date_mutation) 
+      FROM 
+        immobilier.mutation 
+      WHERE 
+        date_mutation between "2020-01-01" 
+        AND "2020-03-31"
+    ) AS T1, 
+    (
+      SELECT 
+        count(date_mutation) 
+      FROM 
+        immobilier.mutation 
+      WHERE 
+        date_mutation between "2020-04-01" 
+        AND "2020-06-30"
+    ) AS T2, 
+    (
+      SELECT 
+        (
+          (T2 - T1)/ T1
+        )* 100
+    ) AS evolution 
+  FROM 
+    immobilier.mutation;
+      </code>
+  </pre>
+
+  <h3>7. Liste des communes où le nombre de ventes a augmenté d'au moins 20% entre le premier et le 
+      second trimestre de 2020.</h3>
+      <pre>
+          <code>
+              SELECT 
+        table1.commune, 
+        (
+          (T1 * 100)/(T1 + T2)
+        ) AS evolution 
+      FROM 
+        (
+          SELECT 
+            commune, 
+            count(id_mutation) AS T1 
+          FROM 
+            immobilier.localite 
+            INNER JOIN immobilier.biens ON immobilier.localite.id_localite = immobilier.biens.id_biens 
+            INNER JOIN immobilier.mutation ON immobilier.mutation.id_mutation = immobilier.biens.id_biens 
+          WHERE 
+            date_mutation between "2020-01-01" 
+            AND "2020-03-31" 
+          GROUP BY 
+            commune 
+          ORDER BY 
+            commune
+        ) table1 
+        INNER JOIN(
+          SELECT 
+            commune, 
+            count(id_mutation) AS T2 
+          FROM 
+            immobilier.localite 
+            INNER JOIN biens ON immobilier.localite.id_localite = immobilier.biens.id_biens 
+            INNER JOIN mutation ON immobilier.mutation.id_mutation = immobilier.biens.id_biens 
+          WHERE 
+            date_mutation between "2020-04-01" 
+            AND "2020-06-30" 
+          GROUP BY 
+            commune 
+          ORDER BY 
+            commune
+        ) table2 
+      GROUP BY 
+        commune 
+      HAVING 
+        evolution >= 20
+          </code>
+      </pre>
+
+  <h3>8. Différence en pourcentage du prix au mètre carré entre un appartement de 2 pièces et un 
+      appartement de 3 pièces.</h3>
+      <pre>
+          <code>
+              SELECT 
+        (
+          SELECT 
+            AVG(
+              immobilier.mutation.valeur_fonciere / biens.surface_carrez
+            ) 
+          FROM 
+            immobilier.mutation 
+            JOIN immobilier.biens ON immobilier.mutation.id_biens = immobilier.biens.id_biens 
+          WHERE 
+            nombre_pieces_principales = 2 
+            AND type_local = "Appartement"
+        ) AS Prix_metre_carre_T2, 
+        (
+          SELECT 
+            AVG(
+              immobilier.mutation.valeur_fonciere / biens.surface_carrez
+            ) 
+          FROM 
+            immobilier.mutation 
+            JOIN immobilier.biens ON immobilier.mutation.id_biens = immobilier.biens.id_biens 
+          WHERE 
+            nombre_pieces_principales = 3 
+            AND type_local = "Appartement"
+        ) AS Prix_metre_carre_T3, 
+        (
+          SELECT 
+            (
+              (
+                Prix_metre_carre_T3 / Prix_metre_carre_T2
+              )-1
+            )* 100
+        ) AS resultat;
+          </code>
+      </pre>
+
+  <h3>9. Les moyennes de valeurs foncières pour le top 3 des communes des départements 6, 13, 33, 59 et 
+      69.</h3>
+      <pre>
+          <code>
+              WITH MyRowSet AS (
+        SELECT 
+          AVG(
+            immobilier.mutation.valeur_fonciere
+          ) AS avg_vf, 
+          immobilier.localite.departements, 
+          immobilier.localite.commune, 
+          row_number () over (
+            partition BY departements 
+            ORDER BY 
+              departements, 
+              - valeur_fonciere
+          ) AS ranking 
+        FROM 
+          immobilier.biens 
+          JOIN immobilier.mutation ON immobilier.biens.id_biens = immobilier.mutation.id_mutation 
+          JOIN immobilier.localite ON immobilier.biens.id_biens = immobilier.localite.id_localite 
+        WHERE 
+          departements in (6, 13, 33, 59, 69) -- departements(6, 13, 33, 59, 69) -- and ranking <=3
+        GROUP BY 
+          commune 
+        ORDER BY 
+          departements ASC, 
+          avg_vf DESC
+      ) 
+      SELECT 
+        * 
+      FROM 
+        MyRowSet 
+      WHERE 
+        ranking <= 3;
+          </code>
+      </pre>
+      
+  <a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+
+{% endblock %}

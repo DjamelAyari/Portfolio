@@ -1,0 +1,104 @@
+.presentation {
+    margin:0 auto;
+    width:960px;
+}
+
+.preparation {
+    margin:0 auto;
+    width:960px;
+}
+
+.presentation_workflow {
+    margin:0 auto;
+    width:960px;
+}
+
+.anonymisation {
+    margin:0 auto;
+    width:960px;
+}
+
+.csv {
+    margin:0 auto;
+    width:960px;
+}
+
+.rgpd {
+    margin:0 auto;
+    width:960px;
+}
+
+.graphiques {
+    margin:0 auto;
+    width:960px;
+}
+
+.repartitionhf {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.repartitioncontrathf {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.repartitionservicehf {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.repartitionpromotionhf {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.repartitionaugementationhf {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.repartitionremunerationhf {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.repartitionremunerationhfbis {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.repartitionaccidenthf {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.repartitiondureehf {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.repartitiondistancehf {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}

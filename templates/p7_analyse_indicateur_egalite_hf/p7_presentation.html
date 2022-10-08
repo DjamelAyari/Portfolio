@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="../../static/p7_css_analyse_indicateur_egalite_hf/style_p7_presentation.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+<title>Analyse des ventes d'une librairie</title>
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul>
+      <li><a href="../../static/document/CV.pdf" target="blank">CV</a></li>
+      <li class="menu-deroulant">
+        <a>Projets</a>
+            <ul class="sous-menu">
+            <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+            <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+            <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+            <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+            <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+                boutique</p></a></li>
+            <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+            <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+            <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+            </ul>
+      </li>
+    </ul>
+</nav>
+
+<br>
+
+<h1>Analyse des indicateurs de l'égalité hommes / femmes</h1>
+
+<div class="presentation">
+
+    <h2>Présentation du projet</h2>
+
+    <p>Chaque année avant le 1er mars, les entreprises d’au moins 50 salariés doivent calculer et publier 
+        sur leur site Internet leurindex de l’égalité femmes-hommes.</p>
+    <p>J'ai pour mission d'aider mon collègue Vincent à automatiser la création d’un rapport diagnostique 
+        sur l’égalité professionnellefemmes hommes.</p>
+    <p>Pour cela, il m’a suggéré l’utilisation de KNIME.</p>
+    <p>Il faut que à partir des fichiers des données issues du Système d’Informations des Ressources 
+        Humaines (SIRH), je lui prépares :</p>
+    <p>-un workflow avec le logiciel KNIME qui crée les graphiques du diagnostic</p>
+    <p>-un fichier .csv prêt pour être utilisé dans nos futures analyses via Tableau Software.</p>
+
+    <p>Le site du ministère du Travail donne de nombreuses informations pour établir un diagnostic.</p> 
+    <p>Voir notamment le <a href="https://s3-eu-west-1.amazonaws.com/static.oc-static.com/prod/courses/files/parcours-data-analyst/Présentation+outil+Diagnostic+Égalité.pdf">document de présentation de l'outil Diagnostic Égalité</a>
+        dans lequel se trouve une liste des indicateurs à surveiller.</p>
+    <p>Pas besoin de tous les extraire, mais dans un premier temps en choisir au minimum 5 dans la liste que 
+    le workflow devragénérer.</p>
+    <p>Les données issues du SIRH ne sont pas anonymisées, alors il faudra les traiter pour que le rapport 
+    respecte <a href="https://www.cnil.fr/cnil-direct/question/quels-sont-les-grands-principes-des-regles-de-protection-des-donnees?visiteur=part">le RGPD.</a></p>
+
+</div>
+
+<div class="preparation">
+
+    <h2>Préparation des données</h2>
+    <p><a href="/p7_notebook_preparation_donnees">Notebook de la préparation des données.</a></p>
+
+</div>
+
+<div class="presentation_workflow">
+
+    <h2>Présentation du workflow</h2>
+    <p>Présentation de la mise en place du workflow</p>
+    <p><a href="../../static/document/P7_DjamelAYARI_Presentation_Projet_7.pptx">Présentation powerpoint de la mise en place du workflow.</a></p>
+
+</div>
+
+<div class="anonymisation">
+
+    <h2>Anonymisation des données</h2>
+    <p><a href="/p7_notebook_anonymisation_data_csv">Notebook de l'anonymisation des données.</a></p>
+
+</div>
+
+<div class="csv">
+
+    <h2>Fichier CSV pour futur analyses via Tableau Software</h2>
+    <p><a href="../../static/document/P7_DjamelAYARI_CSV.csv">Fichier CSV.</a></p>
+
+</div>
+
+<div class="rgpd">
+
+    <h2>Les contraintes RGPD</h2>
+    <p>Il y a 5 grands principes à respecter:</p>
+
+    <p>Le principe de finalité --> est respecté car il est question ici d'un regroupement de données dans le 
+    but de répondre à une demande gouvernementales obligatoire.</p>
+        
+    <p>Le principe de proportionnalité et de pertinence --> est respecté car les données non nécessaire 
+    comme par exemple la date de naissance, les noms prénom, état civil et nombres d'enfants sont 
+    supprimées.</p>
+
+    <p>Le principe d'une durée de conservation limitée --> est respecté car ces données ne seront conservées 
+    que pendant 1 an, jusqu'au prochain calcul de l'index.</p>
+        
+    <p>Le principe de sécurité et de confidentialité --> est respecté car les données sont stockées et 
+    utilisées en interne et anonymisées.</p>
+        
+    <p>Les droits des personnes --> est respecté car la société à informé les personnes concernés de la 
+    collecte des données, pouvoir répondre dans les délais (1 mois) concernant les demandes faits par les 
+    personnes dont les données ont été collectées (demandes de suppressions / modifications / 
+    consultations).</p>
+
+</div>
+
+<div class="graphiques">
+
+    <h2>Les graphiques</h2>
+
+    <h3>Répartition hommes / femmes</h3>
+    <img class="repartitionhf" src="../../static/images/p7_repartition_hf.png" alt="Répartition H/F" width="400" height="300">
+    <p>Il y a un peu plus d’hommes que de femmes.</p>
+
+    <h3>Répartion hommes / femmes par contrat</h3>
+    <img class="repartitioncontrathf" src="../../static/images/p7_repartition_contrat_hf.png" alt="Répartition contrat H/F" width="400" height="300">
+    <p>Il y a plus d’hommes en CDI et plus de femmes en CDD.</p>
+
+    <h3>Répartion hommes / femmes par services</h3>
+    <img class="repartitionservicehf" src="../../static/images/p7_repartition_service_hf.png" alt="Répartition service H/F" width="400" height="300">
+    <p>La répartition par service est assez inégale.</p>
+
+    <h3>Répartion hommes / femmes par promotion</h3>
+    <img class="repartitionpromotionhf" src="../../static/images/p7_repartition_promotion_hf.png" alt="Répartition promotion H/F" width="400" height="300">
+    <p>Il y a un peu plus d’homme ayant obtenue des promotions.</p>
+
+    <h3>Répartion hommes / femmes par augementation</h3>
+    <img class="repartitionaugementationhf" src="../../static/images/p7_repartition_augementation_hf.png" alt="Répartition augementation H/F" width="400" height="300">
+    <p>Il y a un peu plus de femmes ayant obtenue des augmentations.</p>
+
+    <h3>Répartion hommes / femmes par rémunération</h3>
+    <img class="repartitionremunerationhf" src="../../static/images/p7_repartition_remuneration_hf.png" alt="Répartition rémunération H/F" width="400" height="300">
+    <img class="repartitionremunerationhfbis" src="../../static/images/p7_repartition_remuneration_hf_bis.png" alt="Répartition rémunération bis H/F" width="400" height="300">
+    <p>Les répartition de salaire entre hommes et femmes sont relativement égalitaires.</p>
+
+    <h3>Répartion hommes / femmes par accident de travail</h3>
+    <img class="repartitionaccidenthf" src="../../static/images/p7_repartition_accident_hf.png" alt="Répartition accident H/F" width="400" height="300">
+    <p>Les hommes ont un peu plus d’accident de travail que les femmes.</p>
+
+    <h3>Répartion hommes / femmes par durée hebdomadaire</h3>
+    <img class="repartitiondureehf" src="../../static/images/p7_repartition_duree_hf.png" alt="Répartition durée H/F" width="400" height="300">
+    <p>Les hommes ont un peu plus de temps de temps plein que les femmes.</p>
+
+    <h3>Répartion hommes / femmes par distance travail / maison</h3>
+    <img class="repartitiondistancehf" src="../../static/images/p7_repartition_distance_hf.png" alt="Répartition distance H/F" width="400" height="300">
+    <p>La répartition est inégale.</p>
+
+    <a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<link rel="stylesheet" href="../../static/p4_css_etude_sante_public/style_p4_presentation.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+<title>Etude de santé public</title>
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul>
+      <li><a href="../../static/document/CV.pdf" target="blank">CV</a></li>
+      <li class="menu-deroulant">
+        <a>Projets</a>
+            <ul class="sous-menu">
+            <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+            <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+            <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+            <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+            <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+                boutique</p></a></li>
+            <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+            <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+            <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+            </ul>
+      </li>
+    </ul>
+</nav>
+
+<br>
+
+<h1>Etude de santé public</h1>
+
+<div class="presentation">
+
+    <h2>Présentation du projet</h2>
+
+    <p>Travaillant dans ce scénario au sein de la FAO (Food and Agriculture Organization of the United Nations), j'ai pour
+        mission de donner un panorama de l'état de malnutrition dans le monde.</p>
+
+    <h3>Demandes du responsable concernant l'année 2017:</h3>
+
+    <p>-La proportion de personne en état de sous-nutrition</p>
+    <p>-Le nombre théorique de personnes qui pourraient être nourries avec la disponibilité alimentaire 
+        mondiale</p>
+    <p>-Le nombre théorique de personnes qui pourraient être nourries avec la disponibilité alimentaire 
+        des produits végétaux</p>
+    <p>-L'utilisation de la disponibilité intérieure, en particulier la part qui est attribuée à 
+        l'alimentation animale, celle qui est perdue et celle qui est concrètement utilisée pour 
+        l'alimentation humaine.</p>
+
+    <h3>Demandes de ma collègue Mélanie</h3>
+
+    <p>-Liste des pays qui lesquels la proportion de personnes sous-alimentées est la plus forte en 2017.</p>
+    <p>-Liste des pays qui ont le plus bénéficié d'aide depuis 2013.</p>
+    <p>-Liste des pays ayant le plus/moins de disponibilités par habitants</p>
+    <p>... (Investigations perso)</p>
+
+</div>
+
+<div class="analyse">
+
+<h2>Analyse des données</h2>
+
+
+    <a href="/p4_notebook_etude_sante_public" target="blank"><p>Notebook de l'analyse des 
+        données.</p></a>
+
+</div>
+
+<div class="resultat">
+    
+<h2>Présentation des résultats</h2>
+
+    <h3>-La proportion de personne en état de sous-nutrition</h3>
+    <p>La propotion de personnes en état de sous nutrition dans le monde est de 7.1 %</p>
+    <img class="graph1" src="../../static/images/p4_graphique_1.png" alt="Graphique 1" width="800" height="400">
+
+    <h3>-Le nombre théorique de personnes qui pourraient être nourries avec la disponibilité alimentaire 
+        mondiale</h3>
+    <p>Le nombre de personnes qui peuvent être nourries dans le monde est de 8 067 747 392.97</p>
+
+    <h3>-Le nombre théorique de personnes qui pourraient être nourries avec la disponibilité alimentaire 
+        des produits végétaux</h3>
+    <p>Le nombre de personnes qui peuvent être nourries avec les produits végétaux dans le monde est de 6 630 465 131.28</p>
+
+    <h3>-L'utilisation de la disponibilité intérieure, en particulier la part qui est attribuée à 
+        l'alimentation animale, celle qui est perdue et celle qui est concrètement utilisée pour 
+        l'alimentation humaine.</h3>
+    <p>-Le pourcentage d'utilisation de la disponibilité intérieure pour l'alimentation animale est de 13.23 %</p>
+    <p>-Le pourcentage d'alimentation perdue est de 4.65 %</p>
+    <p>-Le pourcentage d'utilisation de la disponibilité intérieure pour l'alimentation humaine est de 
+        49.37 %</p>
+    <img class="graph2" src="../../static/images/p4_graphique_2.png" alt="Graphique 2" width="800" height="400">
+
+    <br>
+
+    <h3>Julien (un collègue) m'a laissé des notes dans lesquelles il indique:</h3>
+        <h3>Il y a un lien logique entre l’ensemble des 10 variables exprimées en milliers de tonnes sur 
+            les utilisations de la disponibilité intérieure, qui peut s’exprimer avec une équation du 
+            type : A1 + A2 + … = disponibilité intérieure = B1 + B2 + …
+            Mais je ne me souviens plus exactement !</h3>
+
+
+    <p>La formule est Production + Importation - Exportation + Variations de stock</p>
+
+
+        <h3>"Lors de mes recherches, j’ai découvert des chiffres intéressants sur l’utilisation des céréales, 
+        notamment la répartition entre l’alimentation humaine (colonne Nourriture) et l’alimentation pour 
+        animaux.
+        La liste des céréales peut être trouvée en allant fouiller un peu dans l’onglet Bilans 
+        alimentaires du site de la FAO.</h3>
+
+
+    <p>L'utilisation des céréales pour l'alimentation humaine est de 24.03 %</p>
+
+    <p>L'utilisation des céréales pour l'alimentation des animaux est de 64.63 %</p>
+
+    <p>Les pertes de céréales sont de 4.52 %</p>
+
+    <p>Le pourcentages concernant les autres utilisations, exemple l'alimentation pour touristes est 
+        de 6.82 %</p>
+    <img class="graph3" src="../../static/images/p4_graphique_3.png" alt="Graphique 3" width="800" height="400">
+
+    <h3>Enfin, je me souviens d’un exemple étonnant d’utilisation du manioc par la Thaïlande aux égards 
+    de la proportion de personnes en sous-nutrition. Il serait intéressant d’aller à nouveau y jeter 
+    un coup d’œil, de mémoire ça concernait l’exportation par rapport à la production."</h3>
+
+
+    <p>Il y a 83.41272992 % du manioc produit est utilisé pour l'exportation.</p>
+
+    <p>La Thaïlande à une population de 69 2098 00 habitants et 6 200 000 habitants sont en état de sous 
+    nutrition soit 8.96%. Il serait intéressant d'utiliser une partie de la production de manioc dans 
+    l'alimentation de la population pour résoudre le problème de sous nutrition en Thaïlande.</p>
+
+    <p>La Thaïlande n'est qu'un exemple car comme vu plus haut il y a largement assez de ressources pour 
+    nourrir tout le monde sur terre. Le problème est dans l'utilisation des ressources, certains pays 
+    en ont des quantités folles et les gaspillent, d'autres en ont assez pour leur population mais font 
+    de l'export avant de nourrir leur population...</p>
+    <img class="graph4" src="../../static/images/p4_graphique_4.png" alt="Graphique 4" width="800" height="400">
+
+    <h3>-Liste des pays qui lesquels la proportion de personnes sous-alimentées est la plus forte en 2017.</h3>
+    <p>Haïti / République populaire démocratique de Corée / Madagascar / Libéria / Lesotho / Tchad / 
+        Rwanda / Mozambique / Timor-Leste / Afghanistan.</p>
+    <p>Pour plus de détails voir le notebook.</p>
+
+    <iframe class="i1" src="https://www.google.com/maps/d/embed?mid=11g5C1maMgClIaHSh6jFmlDHv-O-GW5Q&ehbc=2E312F" width="640" height="480"></iframe>
+
+    <h3>-Liste des pays qui ont le plus bénéficié d'aide depuis 2013.</h3>
+    <p>République arabe syrienne / Éthiopie / Yémen / Soudan du Sud	/ Soudan / Kenya / Bangladesh / 
+        Somalie / République démocratique du Congo / Niger</p>
+    <p>Pour plus de détails voir le notebook.</p>
+
+    <iframe class="i2" src="https://www.google.com/maps/d/embed?mid=1Z4MUVfmVCDhdhbAnsh5Bc_yQiu_pd8w&ehbc=2E312F" width="640" height="480"></iframe>
+
+    <h3>-Liste des pays ayant le plus de disponibilités par habitants</h3>
+    <iframe class="i3" src="https://www.google.com/maps/d/embed?mid=1XX5gjmU69GGladugECKOadRrkB6zDGI&ehbc=2E312F" width="640" height="480"></iframe>
+
+    <h3>-Liste des pays ayant le moins de disponibilités par habitants</h3>
+    <iframe class="i4" src="https://www.google.com/maps/d/embed?mid=1brGPN8Z2HHzLFnpZz0OxNw5BGRdpwF4&ehbc=2E312F" width="640" height="480"></iframe>
+
+    <h3>Récaputulatif</h3>
+    <h4>Récap --> Demandes de Marc</h4>
+    <p>L'on n'a vu précédement que 7.1% de la population mondiale était en état de sous nutrition.</p>
+
+    <p>Mais l'on n'a vu aussi que le nombre de personnes qui peuvent être nourris dans le monde est 
+    de --> 8 067 747 392.97.</p>
+
+    <p>Et que le nombre de personnes qui peuvent être nourris rien qu'avec les produits végétaux dans le 
+    monde est de --> 6 630 465 131.28.</p>
+
+    <p>Sachant que l'on est un peu plus de 7 000 000 000 sur terre, il y a assez pour nourrir la population 
+    mondiale.</p>
+
+    <p>Les questions à ce poser sont:</p>
+
+    <p>-Comment les ressources sont utilisées pour en arriver là ?</p>
+
+    <p>En regardant de plus près l'utilisation des ressources l'on n'a pu constater que:</p>
+
+    <p>-Le pourcentage d'utilisation de la disponibilité intérieure pour l'alimentation animale est 
+        de 13.23 %.</p>
+
+    <p>-Le pourcentage d'alimentation perdue est de 4.65 %.</p>
+
+    <p>-Le pourcentage d'utilisation de la disponibilité intérieure pour l'alimentation humaine est 
+        de 49.37 %.</p>
+
+    <h4>Récap --> Demandes de Mélanie</h4>
+    <p>L'on n'a pu constater que certains pays était plus en difficultés que d'autres au niveau 
+        alimentaire:</p>
+
+    <p>-Il y a sur 203 pays 119 qui n'ont pas de sous-nutrition, donc il y a 84 pays soit 41.37% des pays 
+    dans le monde en état de sous-nutrtiton.</p>
+
+    <p>L'on a aussi pu constater les aides attribuées en 2013:</p>
+
+    <p>-Il y a 76 pays qui ont bénéficier d'aide alimentaire en 2013.</p>
+
+    <p>Et nous nous sommes penchés sur les pays ayant le plus/le moins de disponibilités par habitants.</p>
+
+    <h3>... (Investigations perso)</h3>
+    <p>-Evolution des aides par pays et par année.</p>
+    <p>-Evolution des aides par année et par pays en pourcentages.</p>
+    <p>-Evolution des aides par année tous pays confondus.</p>
+    <p>-Répartition des différents produits donnés en aide.</p>
+    <p>-Pourcentage de perte par rapport à la production tous pays confondus.</p>
+    <p>-Pays n'ayant pas eu d'aide en 2016 mais ayant eu de la sous nutrititon en 2017.</p>
+    <p>-Pays n'ayant pas eu d'aide en 2016 et n'ayant pas eu de sous nutrititon en 2017.</p>
+    <p>-Proportion de personnes en état de sous-nutrition sur chaque année.</p>
+    <p>-Evolution de la propotions de sn pour chaque année par pays.</p>
+    <p>-Année 2017 par rapport aux autres année en termes de proportion de sous nutrition.</p>
+    <a href="/p4_notebook_etude_sante_public" target="blank"><p>Voir notebook.</p></a>
+
+    <a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+
+{% endblock %}

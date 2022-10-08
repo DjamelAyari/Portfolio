@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="../../static/p5_css_optimisation_donnees_boutique/style_p5_presentation.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+<title>Optimisation des données d'une boutique</title>
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul>
+      <li><a href="../../static/document/CV.pdf" target="blank">CV</a></li>
+      <li class="menu-deroulant">
+        <a>Projets</a>
+            <ul class="sous-menu">
+            <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+            <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+            <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+            <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+            <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+                boutique</p></a></li>
+            <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+            <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+            <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+            </ul>
+      </li>
+    </ul>
+</nav>
+
+<br>
+
+<h1>Optimisation des données d'une boutique</h1>
+
+<div class="presentation">
+
+    <h2>Présentation du projet</h2>
+
+    <p>Un marchand de vin me demande de l'aide pour la gestion de ses données.</p>
+
+    <p>Il m'explique que son ERP pour gérer ses ressources, clients,...n'est pas relié à leur site de 
+        vente en ligne.</p>
+
+    <p>Cette situation impact négativement entre autres leur gestion de stock et l'analyse des ventes.</p>
+
+    <p>En attendant une solution plus centralisée, il souhaite que je fasse un rapprochement entre les
+        2 bases.</p>
+
+    <p>La première mission se passe en 3 points:</p>
+
+        <p>1. Rapprocher les deux exports</p>
+        <p>Un export de l’ERP contenant les références produit, leur prix de vente et leur état de stock, 
+            et un export d’une table de l’outil de CMS contenant les informations des produits
+            commercialisés en ligne (nom, description, nombre de ventes...).</p>
+        <p>L’export issu de la boutique en ligne contient le nombre de ventes pour chaque produit depuis 
+            sa mise en ligne, il ne permet pas d’analyser l'évolution des ventes dans le temps.</p>
+        <p>Sylvie, une ancienne stagiaire, a créé un tableau Excel qui permet d’établir le lien entre la 
+            référence du produit dans l’ERP (product_id) et la référence du même produit dans la base de 
+            la boutique en ligne (SKU).</p>
+        <p>Dans son mail Sylvie m'indique que dans le fichier liaison.xlsx (liste les product_id de l’ERP avec 
+            leur référence côté Web), la liste des product_id est exhaustive, mais pour les références 
+            côté Web, ce n'est pas sûre.</p>
+        <p>Et que a colonne id_web dans le fichier correspond au SKU des produits dans la boutique en 
+            ligne.</p>
+        <p>Le marchant de vin, me fait aussi parvenir par mail des fichiers, le fichier issu de l’ERP 
+            (erp.xlsx) et le fichier de la table produit de notre plateforme de vente en ligne 
+            (web.xlsx).</p>
+        
+        <p>2. Une fois le rapprochement effectué, il voudrait que je lui indique le chiffre d’affaires 
+            par produit, ainsi que le total du chiffre d’affaires réalisé en ligne.</p>
+        
+        <p>3. Il ce demandes s’il n’y a pas eu des erreurs de saisie dans certains prix des produits. 
+            Il aimerait que j'effectue une analyse sur cette variable afin de détecter d’éventuelles 
+            valeurs aberrantes, de les lister et d’en faire une représentation graphique pour plus de 
+            lisibilité.</p>
+
+</div>
+
+<div class="analyse">
+
+    <h2>Analyse des données et optimisation</h2>
+
+    <a href="/p5_notebook_optimisation_donnees_boutique" target="blank"><p>Notebook de l'analyse et 
+        optimisation des données.</p></a>
+
+</div>
+
+<div class="resultat">
+
+<h2>Résultats</h2>
+<h3>Chiffre d'affaires par produit</h3>
+<p><a href="../../static/document/df.xlsx">Export Excel des chiffres d'affaire par produits.</a></p>
+
+<h3>Chiffre d'affaires total</h3>
+<p>Le total du chiffre d’affaires réalisé en ligne est de 70568.6 €</p>
+
+<a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+
+{% endblock %}

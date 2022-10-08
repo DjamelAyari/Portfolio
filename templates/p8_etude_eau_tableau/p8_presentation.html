@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="../../static/p8_css_etude_eau_tableau/style_p8_presentation.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+<title>Etude sur l'eau potable avec Tableau</title>
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul>
+      <li><a href="../../static/document/CV.pdf" target="blank">CV</a></li>
+      <li class="menu-deroulant">
+        <a>Projets</a>
+            <ul class="sous-menu">
+            <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+            <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+            <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+            <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+            <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+                boutique</p></a></li>
+            <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+            <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+            <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+            </ul>
+      </li>
+    </ul>
+</nav>
+
+<br>
+
+<h1>Etude sur l'eau potable avec Tableau Software</h1>
+
+<div class="presentation">
+
+    <h2>Présentation du projet</h2>
+
+    <p>l’ONG DWFA (Drinking Water For All) ayant pour ambition de donner accès à l’eau potable à tout le 
+        monde, me donne la mission de faire une étude sur l'eau dans le monde.</p>
+
+    <p>DWFA présente 3 domaines d’expertises:</p>
+    <p>1.Création de services d’accès à l’eau potable</p>
+    <p>2.Modernisation de services d’accès à l’eau déjà existants</p>
+    <p>3.Consulting auprès d’administrations/gouvernements à propos des politiques d’accès à l’eau.</p>
+
+    <p>L’association a effectué une demande de financement auprès d’un bailleur de fonds en présentant 
+        ces 3 domaines d’expertise.</p>
+    <p>Ces nouveaux financements, s’ils sont accordés par le bailleur, pourront permettre d’investir dans un 
+    des domaines d’expertise dans un pays qui n’est pas encore déterminé.</p>
+    <p>Dans ce cadre, je suis missionné pour réaliser un dashboard présentant une vue globale de l’accès
+    à l’eau potable dans le monde.
+    <p>Celui-ci permettra de choisir le pays à cibler dès que le bailleur de fonds aura donné sa réponse 
+        sur le domaine</p>
+
+    <p>Il faut donc que je créer un dashboard pour identifier les pays qui rencontrent des difficultés 
+        d’accès à l’eau potable. Ça nous permettra d’identifier les pays danslesquels concentrer nos 
+        efforts.</p>
+    <p>Pour ça, il faudra représenter des indicateurs relatifs à nos 3 domaines d'expertise.</p>
+    <p>Un compte-rendu de réunion m'a été adressé pour m'aider dans cette mission.</p>
+
+</div>
+
+<div class="compterendu">
+
+    <h2>Compte rendu</h2>
+    <h3>Besoins pour l’histoire Tableau</h3>
+    <p>3 vues sont demandées sur l’histoire Tableau à créer avec tous les indicateurs choisis sur chaque 
+        vue:</p>
+    <p>1. une vue mondiale avec une agrégation des indicateurs au niveau mondiale</p>
+    <p>2. une vue continentale avec les indicateurs agrégés pour le continent sélectionné par 
+        l’utilisateur</p>
+    <p>3. une vue nationale avec les indicateurs pour le pays sélectionné par l’utilisateur.</p>
+
+    <h3>Indicateurs à utiliser</h3>
+    <p>Quelques indicateurs à suivre ont été mentionnés durant la réunion.</p> 
+    <p>Ce ne sont que des exemples d’indicateurs utilisés par le passé, d’autres indicateurs pourront être 
+    utilisés:</p>
+    <p>1. le taux de mortalité dû à de l’eau insalubre.</p>
+    <p>2. la population / densité de population</p>
+    <p>3. la part d’habitants ayant accès à l’eau potable</p>
+    <p>4. la stabilité politique du pays.</p>
+    <p>5. l’évolution de ces facteurs dans le temps.</p>
+
+    <br>
+        
+    <p>Besoin d’indicateurs calculés à l’échelle nationale pour les 3 domaines d’expertise:</p>
+    <p>1. Domaine 1 (création de services) : graphique combinant le taux d’accès à l’eau potable et le taux 
+    de population urbaine.</p>
+    <p>En effet, développer des infrastructures lorsque la population est concentrée en ville n’est pas la 
+    même tâche que de le faire avec des populations rurales.</p>
+    <p>2. Domaine 2 (modernisation des services) : Besoin d’un graphique qui combine le taux de services 
+    (d’infrastructures) “basiques” et le taux d’infrastructures de qualité (qualifiées comme “safely 
+    managed” dans les données) afin d’identifier les pays qui ont un gros besoin d’améliorer la qualité 
+    de leurs services.</p>
+    <p>3. Domaine 3 (consulting) : Besoin d’un graphique combinant l’efficacité de la politique 
+    gouvernementale d’accès à l’eau (politique efficace = taux de mortalité faible + bon accès des 
+    habitants aux services d’eau potable) ainsi que la stabilité politique (en effet, difficile de faire 
+    du consulting auprès d’une administration si la situation politique est instable).</p>
+
+    <br>
+
+    <h3>Précisions techniques</h3>
+    <p>Les précisions techniques qui ont été discutées et validées:</p>
+    <p>1. Pour pouvoir exclure les pays dont l’instabilité politique est trop forte, il faudrait que le 
+    tableau de bord inclue un filtre (modifiable par l’utilisateur) pour exclure les pays trop instables.</p>
+    <p>2. Pour les indicateurs combinant 2 variables, il faudrait afficher un nuage de points.</p>
+    <p>3. Il est important de voir l’évolution de certains indicateurs dans le temps.</p>
+    <p>4. La palette « Bleu », en cohérence avec la couleur de l’eau, devra être utilisée sur Tableau.</p>
+
+
+    <div class='tableauPlaceholder' id='viz1664156603780' style='position: relative'><noscript><a href='#'><img alt='Histoire 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;BT&#47;BT3TDN3J7&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;BT3TDN3J7' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;BT&#47;BT3TDN3J7&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='fr-FR' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1664156603780');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1116px';vizElement.style.height='991px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    
+    <a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+
+{% endblock %}

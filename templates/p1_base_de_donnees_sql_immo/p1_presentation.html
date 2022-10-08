@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="../../static/p1_css_base_de_donnees_sql_immo/style_p1_presentation.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+<title>Base de données</title>
+
+{% endblock %}
+
+{% block body %}
+
+    <nav>
+        <ul>
+          <li><a href="../../static/document/CV.pdf" target="blank">CV</a></li>
+          <li class="menu-deroulant">
+            <a>Projets</a>
+                <ul class="sous-menu">
+                <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+                <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+                <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+                <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+                <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+                    boutique</p></a></li>
+                <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+                <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+                <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+                </ul>
+          </li>
+        </ul>
+    </nav>
+    
+    <br>
+
+<h1>Base de données immobilière</h1>
+
+<img class="p1_database_logo" src="../../static/images/p1_database_logo.jpg" alt="Image de présentation" width="1300" height="400">
+
+<div class="presentation_projet">
+
+    <h2>Présentation du projet</h2>
+
+    <p>A partir d'un jeu de données immobilières extraites du site open data des DVF (demande de valeurs 
+        foncières), ce projet a pour but de créer une base de données permettant de collecter les 
+        transactions immobilières en France et de pouvoir analyser le marché.</p>
+
+    <p>Les différentes étapes du projet:</p>
+
+    <p>-Présentation des données.</p>
+    <p>-Présentation du dictionnaire de données.</p>
+    <p>-Création du MCD.</p>
+    <p>-Création du schéma.</p>
+    <p>-Création de la base de données.</p>
+    <p>-Présentation des requêtes et leurs résultats.</p>
+
+</div>
+
+<div class="presentation_donnees">
+
+    <h2>Présentation des données</h2>
+
+    <p>Comme énoncé plus haut les données ont été extraites du site open data des demandes de valeurs fonc
+        ières (DVF).</a>
+    <p>Sur la totalité des données présentes dans le dataset de base et au vu des besoins, un tri des
+        données a été fait.</p>
+    <p>Pour en savoir plus sur les données de ce projet voir la <a href="https://static.data.gouv.fr/resources/demandes-de-valeurs-foncieres/20210809-152624/notice-descriptive-du-fichier-dvf-20210809.pdf">notice descriptive.</a></p>
+
+</div>
+
+<div class="presentation_dictionnaire">
+
+    <h2>Présentation du dictionnaire de données</h2>
+
+    <p>Voici le dictionnaire des données fait pour la création de la base de données.</p>
+    <p>Pour trier les données de base (environ 43 colonnes) et savoir lesquelles j'allais garder, j'ai 
+        eu recours à la <a href="https://static.data.gouv.fr/resources/demandes-de-valeurs-foncieres/20210809-152624/notice-descriptive-du-fichier-dvf-20210809.pdf">notice descriptive des fichiers de valeurs foncières.</a></p>
+
+    <img class="p1_ddd" src="../../static/images/p1_ddd.png" alt="Dictionnaire des données" width="1000" height="1000">
+
+</div>
+
+<div class="mcd">
+
+    <h2>Création du MCD</h2>
+
+    <p>Ici vous pouvez prendre connaissance du modèle conceptuel de données réalisé dans le cadre du 
+        design de la base de données.</p>
+
+        <p>Le MCD créé permet de bien visualiser les différentes:</p>
+        <p>-entités (mutation, localite, biens)</p>
+        <p>-associations (une mutation concerne un bien, et un bien est localisé à une localité)</p>
+        <p>-les cardinalités (un bien peut avoir une ou plusieurs mutations et une mutation concerne un bien 
+        | un bien est localisé à une localité et une localité concerne plusieurs biens)</p>
+        <p>Concernant les appartements, la localité concerne la cage d’escalier et donc un bâtiment ayant une 
+        adresse (il peut contenir plusieurs appartements).</p>
+        
+    <img class="p1_mcd" src="../../static/images/p1_mcd.png" alt="Modèle Conception de Données" width="800" height="500">
+
+</div>
+
+<div class="schema">
+
+    <h2>Création du schéma</h2>
+
+    <p>Un schéma normalisé 3NF a aussi été fait.</p>
+
+    <p>Dans le schéma il y a bien la présence des différents types de données, ainsi que les clés.</p>
+    <p>Les normes:</p>
+    <p>1 Chaque cellule a une valeur unique (les valeurs pour une colonne sont du même type et chaque 
+        ligne est unique).</p>
+    <p>2 Les attributs ne faisant pas partie de la clé primaire dépendent complètement de la clé primaire 
+        et non partiellement (par exemple pour l’indice de répétition, celui-ci dépend d’une adresse 
+        complète pour exister).</p>
+    <p>3 Un attribut n’appartenant pas à une clé primaire, ne dépend pas d’un autre attribut qui 
+        n’appartient pas à une clé.</p>
+        
+    <img class="p1_sdn" src="../../static/images/p1_sdn.png" alt="Schéma Relationel Normalisé" width="800" height="500">
+
+</div>
+
+<div class="creation_bdd">
+
+    <h2>Création de la base de données</h2>
+
+    <h3>Préparation des données</h3>
+
+    <a href="/p1_code_python" target="blank"><p>Voici la partie préparation des données pour la base de données (faite en python).</p></a>
+
+    <h3>Création des tables + Insertion des données</h3>
+
+    <a href="/p1_code_table_donnees" target="blank"><p>Voici la création des tables et insertion des données.</p></a>
+
+</div>
+
+<div class="requetes_resultats">
+
+    <h2>Présentation des requêtes et leurs résultats</h2>
+
+    <p>Pour ce projet il était demandé de faire des requêtes.</p>
+    <p>Voici la liste des requêtes demandées:
+    <p>1. Nombre total d’appartements vendus au 1er semestre 2020.</p>
+    <p>2. Proportion des ventes d’appartements par le nombre de pièces.</p>
+    <p>3. Liste des 10 départements où le prix du mètre carré est le plus élevé.</p>
+    <p>4. Prix moyen du mètre carré d’une maison en Île-de-France.</p>
+    <p>5. Liste des 10 appartements les plus chers avec le département et le nombre de mètres carrés.</p>
+    <p>6. Taux d’évolution du nombre de ventes entre le premier et le second trimestre de 2020.</p>
+    <p>7. Liste des communes où le nombre de ventes a augmenté d'au moins 20% entre le premier et le 
+        second trimestre de 2020.</p>
+    <p>8. Différence en pourcentage du prix au mètre carré entre un appartement de 2 pièces et un 
+        appartement de 3 pièces.</p>
+    <p>9. Les moyennes de valeurs foncières pour le top 3 des communes des départements 6, 13, 33, 59 et 
+        69</p>
+
+    <a href="/p1_queries" target="blank"><p>Voici les différentes requêtes codées.</p></a>
+
+    <a href="/p1_resultat_queries" target="blank"><p>Voici les résultats des différentes requêtes.</p></a>
+
+    <a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+
+{% endblock %}
+
+
+

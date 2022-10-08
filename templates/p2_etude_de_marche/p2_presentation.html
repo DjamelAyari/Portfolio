@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="../..//static/p2_css_etude_de_marche/style_p2_presentation.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+<title>Etude de marché</title>
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul>
+      <li><a href="../../static/document/CV.pdf" target="blank">CV</a></li>
+      <li class="menu-deroulant">
+        <a>Projets</a>
+            <ul class="sous-menu">
+            <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+            <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+            <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+            <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+            <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+                boutique</p></a></li>
+            <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+            <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+            <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+            </ul>
+      </li>
+    </ul>
+</nav>
+
+<br>
+
+<h1>Etude de marché</h1>
+
+<div class="presentation">
+
+    <h2>Présentation du projet</h2>
+
+    <p>Une société Française d'agroalimentaire souhaitant exporter ses poulets à l'international, fait 
+        appel à mes services, dans le but d'obtenir une première analyse des groupements de pays qu'ils
+    pourraient cibler pour l'exportation de leurs poulets.</p>
+
+    <p>A l'aide des données de la FAO, et via des méthodes de clustering j'ai pu faire des propositions
+        d'exportation pour l'entreprise.</p>
+
+</div>
+
+<div class="analyse">
+
+    <h2>Analyses des données</h2>
+
+    <a href="/p2_notebook_etude_de_marche" target="blank"> <p>Notebook de l'analyse des données</p></a>
+
+</div>
+
+<div class="resultat">
+
+    <h2>Présentation des résultats de l'analyse</h2>
+
+    <p>Cette analyse permet de mettre en lumière des groupements / clusters de pays.</p>
+    <p>Pour rappel l'entreprise cherche à exporter ses poulets.</p>
+    <p>Il y a plusieurs variables qui seront prises en compte:</p>
+    <p>-La disponibilité intérieure qui témoigne de la disponibilité totale toutes utilisations confondues.</p>
+    <p>-L'exportation</p>
+    <p>-L'importation</p>
+    <p>-La production</p>
+    <p>La nourriture ne sera pas prises en compte étant donnée qu'elle représente la nourriture humaine
+        locale, et qu'il n'y a pas eu dans les consignes de mention sur l'utilisation strictement humaine
+        et locale.</p>
+
+    <p>La disponibilité intérieure est calculée par la formule suivante (production + importation - exportation + variation de stock)</p>
+
+    <p>À NOTER que le tableau de comparaison est fait à partir des moyennes.</p>
+
+    <p>À noter aussi que certains cluster contiennent plus de pays que d'autres et aussi que certains pays
+        ont une population plus importante que d'autres (Chine par exemple).</p>
+    <p>Ce qui rend la comparaison entre clusters de la variable disponibilité intérieure délicate.</p>
+    <p>C'est pour cette raison que nous allons analyser les résultats en pourcentages (les importations par
+        rapport à leurs disponibilités intérieures et les exportations par rapport à leurs productions).</p>
+
+    <br>
+
+    <p>Pour savoir quel pays se trouve dans quel cluster voir la carte ci-dessous.</p>
+    <p>Pour sélectionnner un ou plusieur cluster ou encore tous, cliquer sur le logo contenant une
+        flèche en haut à gauche de la carte.</p>
+
+    <iframe class="googlemap" src="https://www.google.com/maps/d/embed?mid=1sTPd1nuJNQjP_IcrTbOI8Nx4GS4QyEc&ehbc=2E312F" width="1000" height="600"></iframe>
+
+    <br>
+
+    <img class="resultat_cluster" src="../../static/images/p2_resultats_clusters.png" alt="Résultats des clusters" width="1000" height="400">
+    <em>* Tableau des moyennes par clusters</em>
+
+    <br>
+
+    <img class="heatmap" src="../../static/images/p2_heatmap_clusters.png" alt="HeatMap" width="600" height="400">
+    <em>* HeatMap (plus les quantités sont élevées plus la couleur est foncée)</em>
+
+    <br>
+
+    <img class="cluster_ratio" src="../../static/images/p2_clusters_ratio.PNG" alt="Ratio des clusters" width="800" height="400">
+    <em>* Tableau des pourcentages</em>
+    
+    <br>
+    
+    <p>En regardant le tableau des pourcentages ci-dessus:</p>
+    <p>On peut constater que C7 , C2, C3 sont ceux qui <u>importent</u> le plus (plus de la moitié de leurs
+        disponibilités intérieures).</p>
+
+    <p>On peut aussi constater que les <u>exportations</u> de production sont existantes mais plutôt faibles en
+        comparaison des importations.</p>
+
+    <p>Les clusters qui <u>exportent</u> le plus sont C2, C7, C3, mais en quantité assez faible (moins de 15%).</p>
+
+    <p>C4, et C6 sont chacun 1 seul pays (Venezuela et Maroc).</p>
+
+    <p>On voit d'ailleurs que le Venezuela <u>produit</u> la majorité de sa dispo et n'<u>exporte</u> pas, l'on peut 
+        mettre ce pays hors de la course.</p>
+
+    <p>Le Maroc lui <u>produit</u> beaucoup, mais <u>export</u> et <u>importe</u> peu.</p>
+
+    <p>Pour revenir sur les clusters C7, C2, C3 qui <u>importent</u> la majorité de leurs disponibilités intérieures, ce
+        sont des pays de toutes les régions du monde (Afrique, Amérique, Pays de l'Est, Asie).</p>
+
+    <p>Il pourrait être intéressant de voir quels sont les pays les plus en demandes dans ces clusters.</p>
+
+    <p>Il pourrait être intéressant de regarder aussi les cluster C5 et C1, qui <u>importent</u> moins mais
+        qui le font quand même, pour voir si la cela vient du fait que ce sont des pays moins consommateurs
+        de poulets ou bien si ce sont des pays qui ont moins de possibilités que ceux des clusters cités
+        plus haut (moins riche par exemple).</p>
+
+    <p>Quand on regarde les pays présents dans les clusters l'on peut aussi ce demandé si l'instabilité de
+        certains pays a un rôle dans leurs consommations de poulet (problème d'approvisionnement, problème
+        d'élevage...).</p>
+
+    <p>Il pourrait être intéressant de concentrer sur les pays les plus proches au départ dans un souci
+        de transport et logistique.<p>
+
+    <p>Par exemple dans le cluster 2 il y a le Luxembourg et Malte, dans le cluster 3 il y a la Lettonie 
+        et la Slovénie ou encore l'Albanie, Estonie...</p>
+
+    <p>L'intérêt des pays cités plus haut et qu'ils sont dans l'Union Européenne ce qui peut dans un début
+    de conquête du marché international ce trouver plus facile ayant des normes communes.</p>
+
+    <a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+
+{% endblock %}

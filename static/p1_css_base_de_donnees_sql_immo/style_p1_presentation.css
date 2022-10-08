@@ -1,0 +1,65 @@
+.p1_database_logo {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.p1_ddd {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.p1_mcd {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.p1_sdn {
+	border: 1px solid #555;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.presentation_projet {
+	margin:0 auto;
+    width:960px;
+}
+
+.presentation_donnees {
+	margin:0 auto;
+    width:960px;
+}
+
+.presentation_dictionnaire {
+	margin:0 auto;
+    width:960px;
+}
+
+.mcd {
+	margin:0 auto;
+    width:960px;
+}
+
+.schema {
+	margin:0 auto;
+    width:960px;
+}
+
+.creation_bdd {
+	margin:0 auto;
+    width:960px;
+}
+
+.requetes_resultats {
+	margin:0 auto;
+    width:960px;
+}
+
+
+
