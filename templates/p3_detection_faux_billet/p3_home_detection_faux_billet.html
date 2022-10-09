@@ -1,0 +1,58 @@
+{% extends '/p3_detection_faux_billet/p3_base_detection_faux_billet.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="../..//static/p3_css_detection_faux_billet/style_p3_home_detection_faux_billet.css" type="text/css">
+<link rel="stylesheet" href="../../static/style_all.css" type="text/css">
+<title>Page d'accueil</title>
+
+{% endblock %}
+
+{% block body %}
+
+<nav>
+    <ul>
+      <li><a href="../../static/document/CV.pdf" target="blank">CV</a></li>
+      <li class="menu-deroulant">
+        <a>Projets</a>
+            <ul class="sous-menu">
+            <li><a href="/p1_presentation" target="blank"><p>1. Création d'un base de données immoblilière en SQL</p></a></li>
+            <li><a href="/p2_presentation" target="blank"><p>2. Etude de marché en utilisant le clustering</p></a></li>
+            <li><a href="/p3_presentation" target="blank"> <p>3. Application de détéction de faux billets</p></a></li>
+            <li><a href="/p4_presentation" target="blank"> <p>4. Etude de santé public</p></a></li>
+            <li><a href="/p5_presentation" target="blank"> <p>5. Optimisation des données d'une 
+                boutique</p></a></li>
+            <li><a href="/p6_presentation" target="blank"> <p>6. Analyse des ventes d'une librairie</p></a></li>
+            <li><a href="/p7_presentation" target="blank"> <p>7. Analyse des indicateurs de l'égalité hommes / femmes.</p></a></li>
+            <li><a href="/p8_presentation" target="blank"> <p>8. Etude sur l'eau potable dans le monde.</p></a></li>
+            </ul>
+      </li>
+    </ul>
+</nav>
+
+<br>
+<div class="application">
+
+    <h1>Bienvenue sur l'application</h1>
+    <h2>Application de détection de faux billets</h2>
+
+    <h3>Le fichier inséré doit être sous la forme suivante:</h3>
+    <img class="exemple_forme_ficher" src="../../static/images/p3_exemple_forme_ficher.PNG" alt="Exemple fichier forme" width="600" height="300">
+
+    <br>
+
+    <p> Insert your CSV file and then download the Result
+    <form action="" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" class="btn btn-block"/>
+        </br>
+        </br>
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+    <br>
+
+        {{ predictions }}
+
+    <a href="/home" target="blank"> <p>Retour sur la page principale</p></a>
+
+</div>
+{% endblock %}
